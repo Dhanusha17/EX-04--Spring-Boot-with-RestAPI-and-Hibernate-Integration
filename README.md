@@ -1,7 +1,8 @@
 # Exp-04-Spring-Boot-with-REST-API-and-Hibernate-Integration
-## NAME : DHANUSHA K
 
-## REG NO : 212223040034
+# Name: Dhanusha k
+# Register Number: 212223040034
+
 ## AIM:
 To develop a Spring Boot application to store and retrieve data from a Movies database using Object Relational Mapping (ORM) with Hibernate and expose it via REST APIs.
 
@@ -36,7 +37,7 @@ DELETE /movies/{id}
 ## PROGRAM CODE (Main Files):
 ### application.properties
 ```
-spring.application.name=MOVIE
+spring.application.name=ex4
 
 spring.datasource.url=jdbc:h2:mem:testdb
 spring.datasource.driverClassName=org.h2.Driver
@@ -52,10 +53,10 @@ spring.h2.console.path=/h2-console
 
 server.port=8081
 ```
-### Movie.java
 
+### Movie.java
 ```
-package com.example.MOVIE;
+package com.example.ex4;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -127,7 +128,7 @@ public class Movie {
 ```
 ### MovieRepository.java
 ```
-package com.example.MOVIE;
+package com.example.ex4;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -136,7 +137,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 ```
 ### MovieController.java
 ```
-package com.example.MOVIE;
+package com.example.ex4;
 
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -180,11 +181,9 @@ public class MovieController {
             @PathVariable Long id,
             @RequestBody Movie movie) {
 
-        Movie existingMovie =
-                movieRepository.findById(id).orElse(null);
+        Movie existingMovie = movieRepository.findById(id).orElse(null);
 
         if (existingMovie != null) {
-
             existingMovie.setTitle(movie.getTitle());
             existingMovie.setGenre(movie.getGenre());
             existingMovie.setRating(movie.getRating());
@@ -200,40 +199,63 @@ public class MovieController {
     // Delete a movie
     @DeleteMapping("/{id}")
     public String deleteMovie(@PathVariable Long id) {
-
         movieRepository.deleteById(id);
-
         return "Movie deleted successfully";
     }
 }
 ```
-### MovieApplication.java
+
+# EX4Application.java
 ```
-package com.example.MOVIE;
+package com.example.ex4;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MovieApplication {
+public class Ex4Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MovieApplication.class, args);
+		SpringApplication.run(Ex4Application.class, args);
 	}
+
 }
+
 ```
-## OUTPUT:
-## POST /movies
-<img width="1920" height="1080" alt="Screenshot (1037)" src="https://github.com/user-attachments/assets/42a02114-1679-4e7f-a4f3-41d55a9a9c68" />
 
-## GET /movies
-<img width="1920" height="1080" alt="Screenshot (1038)" src="https://github.com/user-attachments/assets/9039d85b-26e1-4a3c-9ac4-5cfd30345223" />
+# Output:
 
-## PUT /movies/{id}
-<img width="1920" height="1080" alt="Screenshot (1040)" src="https://github.com/user-attachments/assets/aa5caa34-c694-40b3-84e1-82b4b01086e0" />
+## POST
 
-## DELETE /movies/{id}
-<img width="1920" height="1080" alt="Screenshot (1041)" src="https://github.com/user-attachments/assets/f72f3625-ffe8-4370-a4f9-2a764cc85a98" />
+<img width="1535" height="863" alt="ex4 post" src="https://github.com/user-attachments/assets/e2a6b154-3be0-402c-84ec-743aaaafa2c3" />
 
-## Result
-Thus the development of a Spring Boot application to store and retrieve data from a Movies database is completed successfully
+
+## GET
+
+
+<img width="1535" height="863" alt="ex4 get" src="https://github.com/user-attachments/assets/d48d3d5f-4179-478f-8720-de02af99240d" />
+
+
+## GET BY ID
+
+
+<img width="1535" height="863" alt="ex4 get id" src="https://github.com/user-attachments/assets/4f9d3d46-7fdf-4047-ae3a-ed09da23ecd7" />
+
+
+## PUT
+
+
+<img width="1530" height="863" alt="ex4 put" src="https://github.com/user-attachments/assets/5dc79af5-ffa5-4bb3-8211-c3cf8332be2f" />
+
+
+## DELETE
+
+
+<img width="1535" height="863" alt="ex4 delete" src="https://github.com/user-attachments/assets/9f084d05-1074-421c-b74c-c789bc0d54c7" />
+
+
+
+# Result:
+
+The output for this lab experiment confirms that all CRUD operations function properly on the H2 database
+
